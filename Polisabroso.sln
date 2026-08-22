@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polisabroso.App", "src\Polisabroso.App\Polisabroso.App.csproj", "{B5DACB61-26B3-4FA3-BED1-9CA2681E7810}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B5DACB61-26B3-4FA3-BED1-9CA2681E7810}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5DACB61-26B3-4FA3-BED1-9CA2681E7810}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5DACB61-26B3-4FA3-BED1-9CA2681E7810}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5DACB61-26B3-4FA3-BED1-9CA2681E7810}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
