@@ -31,7 +31,15 @@ public static class CatalogModuleExtensions
 
 #### Advantages
 
+- Single deploy.
+- Easier maintaince in smaller projects.
+- Loose coupling.
+- High cohesion.
+- In-memory/process calls (does not require external services like an API.)
+
 #### Known disadvantages
+
+- Conceptual boundaries, requires clear and strict rules.
 
 ### Rules
 
@@ -49,11 +57,15 @@ project, all the modules share a database.
 | Show data from another module                      | Use Views, DTOs, readonly models, etc.                                                            |
 
 ### Transactions and `DbContext`
+
 Since this is a **Blazor Server** project, a `DbContext` instantiated in, the `customers` module, can also be present at
 the products module, becase a `User Circuit` can be considered as a `scope` and the context will exist in the circuit's
-lifecycle. 
+lifecycle.
 
-So when performing `DML` operations, a new instance of the `DbContext` should be created, using `IDbContextFactory<DbContext>`. 
+So when performing `DML` operations, a new instance of the `DbContext` should be created, using
+`IDbContextFactory<DbContext>`.
+
+> Note: in the future it's possible to change the database structure. Each module could represent a **Database Scheme**.
 
 ### Folder Structure
 
@@ -80,6 +92,7 @@ EcommerceMonolith/
 ## Minimal Valuable Product (MVP)
 
 Modules:
+
 - [ ] Authentication
 - [ ] Authorization
 - [ ] Billing
@@ -92,7 +105,7 @@ Modules:
 - **Display Language:** Spanish
 - **Code Language:** English
 
-## Modules 
+## Modules
 
 - Billing
 - Inventory
@@ -102,6 +115,7 @@ Modules:
 - Reports
 
 # TBD:
+
 - Business and accounting rules. (fiscal periods, sequences)
 - Auth and security. (roles, permissions, sensitive-data handling)
 - Development conventions. (branches, naming, commits, pull requests)
