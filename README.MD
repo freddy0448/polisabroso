@@ -119,3 +119,9 @@ Modules:
 - Business and accounting rules. (fiscal periods, sequences)
 - Auth and security. (roles, permissions, sensitive-data handling)
 - Development conventions. (branches, naming, commits, pull requests)
+
+# Future
+- Menus: public menu of the day, frequent options, recepies catalog, etc.
+- Receips and costs: rations per plate/recipe, cost per plate/recipe, income per plate/recipe, etc.
+---
+- Tips
