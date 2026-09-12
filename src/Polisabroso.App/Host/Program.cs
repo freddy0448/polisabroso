@@ -1,4 +1,5 @@
-using Polisabroso.Components;
+
+using Polisabroso.Host.Blazor;
 
 var builder = WebApplication.CreateBuilder(args);
 
