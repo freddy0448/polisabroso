@@ -107,12 +107,11 @@ Modules:
 
 ## Modules
 
-- Billing
-- Inventory
-- Accounts payable
-- Accounts receivable
-- Payroll
+- Orders: Iventory, bills, sales.
+- Accountability: Accounts payable, accounts receivable.
+- Human resources
 - Reports
+- Security: authentication, authorization.
 
 # TBD:
 
