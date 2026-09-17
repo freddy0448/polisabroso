@@ -2,7 +2,7 @@
 
 ## Project Structure & Module Organization
 
-`Polisabroso.sln` contains the ASP.NET Core Blazor Server application in `src/Polisabroso.App`. Startup and routing live under `Host/`; reusable layouts and pages belong in `Shared/UI/`; business features are grouped by module under `Modules/<Feature>/` (for example, `Modules/Auth/UI`). Static files live in `wwwroot/`, with Tailwind input at `wwwroot/styles/tailwind.input.css` and generated CSS at `wwwroot/css/tailwind.css`. Design references are stored in `docs/design/`.
+`Polisabroso.sln` contains the ASP.NET Core Blazor Server application in `src/Polisabroso.App`. Startup and routing live under `Host/`; reusable layouts and pages belong in `Shared/UI/`; business features are grouped by module under `Modules/<Feature>/` (for example, `Modules/Auth/UI`). Static files live in `wwwroot/`, with Tailwind input at `wwwroot/styles/tailwind.input.css` and generated CSS at `wwwroot/css/tailwind.css`. **The color palette is defined in `src\Polisabroso.App\wwwroot\styles\tailwind.input.css`.** Design references are stored in `docs/design/`.
 
 Keep module internals private. Cross-module behavior should be exposed through a small public contract; shared read models may be used for queries but must not become writable back doors into another module.
 
