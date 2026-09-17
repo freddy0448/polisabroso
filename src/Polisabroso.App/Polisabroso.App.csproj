@@ -15,6 +15,10 @@
         </Content>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Modules\Auth\docs\" />
+    </ItemGroup>
+
     <Target Name="css:watch" BeforeTargets="build" Condition="$(Configuration) == 'Debug'">
         <Exec Command="npm run css:watch"/>
     </Target>
