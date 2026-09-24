@@ -1,0 +1,9 @@
+.login-layout {
+    min-height: 100svh;
+    color: var(--color-text);
+    background: var(--color-background);
+}
+
+.login-layout__main {
+    min-height: 100svh;
+}

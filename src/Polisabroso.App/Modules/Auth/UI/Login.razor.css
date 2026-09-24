@@ -1,0 +1,275 @@
+.login-page {
+    --login-shadow-soft: 0 24px 70px color-mix(in srgb, var(--color-primary-active) 14%, transparent);
+    --login-shadow-action: 0 12px 24px color-mix(in srgb, var(--color-primary) 16%, transparent);
+    --login-surface-glass: color-mix(in srgb, var(--color-surface) 90%, transparent);
+    --login-placeholder: color-mix(in srgb, var(--color-text-muted) 78%, var(--color-surface));
+
+    position: relative;
+    display: grid;
+    min-height: 100svh;
+    place-items: center;
+    overflow: hidden;
+    padding: clamp(2.125rem, 6vw, 3.5rem) 1.25rem;
+    background:
+        radial-gradient(circle at 18% 14%, color-mix(in srgb, var(--color-surface) 88%, transparent) 0 9%, transparent 34%),
+        radial-gradient(circle at 82% 82%, color-mix(in srgb, var(--color-primary-soft) 74%, transparent) 0 12%, transparent 38%),
+        linear-gradient(138deg, var(--color-primary-soft) 0%, var(--color-background) 42%, var(--color-primary-soft) 100%);
+}
+
+.login-page::before,
+.login-page::after {
+    position: absolute;
+    border-radius: 999px;
+    filter: blur(8px);
+    opacity: 0.76;
+    content: "";
+}
+
+.login-page::before {
+    width: min(42vw, 35rem);
+    aspect-ratio: 1;
+    top: -18vw;
+    left: -14vw;
+    background: linear-gradient(145deg,
+        color-mix(in srgb, var(--color-primary) 78%, transparent),
+        color-mix(in srgb, var(--color-primary-hover) 5%, transparent));
+}
+
+.login-page::after {
+    right: -10vw;
+    bottom: -16vw;
+    width: min(34vw, 28.125rem);
+    aspect-ratio: 1;
+    background: linear-gradient(145deg,
+        color-mix(in srgb, var(--color-primary-hover) 10%, transparent),
+        color-mix(in srgb, var(--color-primary) 44%, transparent));
+}
+
+.login-page__grain {
+    position: absolute;
+    inset: 0;
+    opacity: 0.28;
+    background-image: radial-gradient(color-mix(in srgb, var(--color-primary) 24%, transparent) 0.7px, transparent 0.7px);
+    background-size: 20px 20px;
+    mask-image: linear-gradient(to bottom, transparent, #000 24%, #000 76%, transparent);
+}
+
+.login-card {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 28.75rem);
+    border: 1px solid color-mix(in srgb, var(--color-surface) 92%, transparent);
+    border-radius: 1.75rem;
+    padding: clamp(1.75rem, 5vw, 2.875rem);
+    background: var(--login-surface-glass);
+    box-shadow: var(--login-shadow-soft);
+    backdrop-filter: blur(18px);
+}
+
+.login-card__brand {
+    margin-bottom: 2.375rem;
+}
+
+.brand-lockup {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6875rem;
+}
+
+.brand-lockup__mark {
+    width: 2.75rem;
+    height: 2.75rem;
+    flex: 0 0 auto;
+}
+
+.brand-lockup__name {
+    display: block;
+    color: var(--color-primary);
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+}
+
+.brand-lockup__label {
+    display: block;
+    margin-top: 0.0625rem;
+    color: var(--color-text-muted);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.eyebrow {
+    margin: 0 0 0.625rem;
+    color: var(--color-primary);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.login-card h1 {
+    margin: 0;
+    color: var(--color-text);
+    font-size: clamp(2rem, 6vw, 2.7rem);
+    line-height: 1.04;
+    letter-spacing: -0.055em;
+}
+
+.login-card__intro {
+    margin: 0.8125rem 0 1.875rem;
+    color: var(--color-text-muted);
+    font-size: 0.94rem;
+    line-height: 1.65;
+}
+
+.login-form {
+    display: grid;
+    gap: 1.125rem;
+}
+
+.field {
+    display: grid;
+    gap: 0.5rem;
+}
+
+.field label {
+    color: var(--color-text);
+    font-size: 0.83rem;
+    font-weight: 700;
+}
+
+.field input {
+    width: 100%;
+    min-height: 3.125rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.75rem;
+    padding: 0 0.9375rem;
+    color: var(--color-text);
+    background: var(--color-surface);
+    font-size: 1rem;
+    transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.field input::placeholder {
+    color: var(--login-placeholder);
+}
+
+.field input:hover {
+    border-color: color-mix(in srgb, var(--color-border) 72%, var(--color-text-muted));
+}
+
+.field input:focus {
+    border-color: var(--color-primary);
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem var(--color-primary-soft);
+}
+
+.login-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    color: var(--color-text-muted);
+    font-size: 0.78rem;
+}
+
+.check {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.check input {
+    width: 1rem;
+    height: 1rem;
+    margin: 0;
+    accent-color: var(--color-primary);
+}
+
+.login-link {
+    color: var(--color-primary);
+    font-weight: 700;
+    text-underline-offset: 0.1875rem;
+}
+
+.login-link:hover {
+    color: var(--color-primary-hover);
+}
+
+.primary-action {
+    width: 100%;
+    min-height: 3.25rem;
+    border: 0;
+    border-radius: 0.75rem;
+    color: var(--color-surface);
+    background: var(--color-primary);
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    box-shadow: var(--login-shadow-action);
+    cursor: pointer;
+    transition: background 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+}
+
+.primary-action:hover {
+    background: var(--color-primary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 16px 28px color-mix(in srgb, var(--color-primary) 22%, transparent);
+}
+
+.primary-action:active {
+    background: var(--color-primary-active);
+    transform: translateY(0);
+}
+
+.login-card__footer {
+    margin: 1.625rem 0 0;
+    color: var(--color-text-muted);
+    font-size: 0.72rem;
+    text-align: center;
+}
+
+.login-page :is(button, a, input):focus-visible {
+    outline: 3px solid var(--color-info);
+    outline-offset: 3px;
+}
+
+@media (max-width: 45rem) {
+    .login-page::before {
+        width: 20rem;
+        top: -7.5rem;
+        left: -11.25rem;
+    }
+
+    .login-page::after {
+        right: -10.625rem;
+        bottom: -7.5rem;
+        width: 18.125rem;
+    }
+}
+
+@media (max-width: 30rem) {
+    .login-page {
+        padding: 2.125rem 0.875rem;
+    }
+
+    .login-card {
+        border-radius: 1.375rem;
+    }
+
+    .login-meta {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.625rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .login-page *,
+    .login-page *::before,
+    .login-page *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}

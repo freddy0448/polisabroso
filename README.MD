@@ -124,3 +124,7 @@ Modules:
 - Receips and costs: rations per plate/recipe, cost per plate/recipe, income per plate/recipe, etc.
 ---
 - Tips
+
+# Notes
+
+- The application is meant to initialize in `/login`, this is defined in `launchSettings.json` and has to be considered in deploy.
