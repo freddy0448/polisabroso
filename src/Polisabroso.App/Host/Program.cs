@@ -1,11 +1,18 @@
-
 using Polisabroso.Host.Blazor;
+using Polisabroso.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+var connString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddSqlServer<AppDbContext>(connString, null, contextActions =>
+{
+    contextActions.EnableDetailedErrors(builder.Environment.IsDevelopment());
+    contextActions.EnableSensitiveDataLogging(builder.Environment.IsDevelopment());
+});
 
 var app = builder.Build();
 
