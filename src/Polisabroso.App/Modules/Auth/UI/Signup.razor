@@ -1,0 +1,26 @@
+@page "/signup"
+@using Microsoft.AspNetCore.Components.Web
+@using Polisabroso.Modules.Auth.UI.Components
+@using Polisabroso.Shared.UI.Components
+@using Polisabroso.Shared.UI.Layout
+@layout LoginLayout
+
+<PageTitle>Crear cuenta · Polisabroso</PageTitle>
+
+<section class="signup-page" aria-labelledby="signup-title">
+    <div class="signup-page__grain" aria-hidden="true"></div>
+    <article class="signup-card">
+        <header class="signup-card__brand">
+            <BrandLockup />
+        </header>
+
+        <p class="eyebrow">Bienvenido al equipo</p>
+        <h1 id="signup-title">Tu cuenta,<br />lista para servir.</h1>
+        <p class="signup-card__intro">Crea tu cuenta para organizar pedidos y mantener cada combinación clara desde la cocina hasta la entrega.</p>
+
+        <SignupForm />
+
+        <p class="signin-prompt">¿Ya tienes una cuenta? <a class="text-link" href="/login">Inicia sesión</a></p>
+        <footer class="signup-card__footer">Acceso exclusivo para el equipo de Polisabroso</footer>
+    </article>
+</section>

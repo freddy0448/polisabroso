@@ -1,0 +1,29 @@
+.brand-lockup {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.brand-lockup__mark {
+    width: 44px;
+    height: 44px;
+    flex: 0 0 auto;
+}
+
+.brand-lockup__name {
+    display: block;
+    color: var(--color-primary);
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+}
+
+.brand-lockup__label {
+    display: block;
+    margin-top: 1px;
+    color: var(--color-text-muted);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}

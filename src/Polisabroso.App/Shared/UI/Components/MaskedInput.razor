@@ -1,0 +1,7 @@
+@namespace Polisabroso.Shared.UI.Components
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Web
+@inherits InputBase<string>
+
+<input @attributes="AdditionalAttributes" class="@InputCssClass" name="@NameAttributeValue" type="text"
+       @bind="CurrentValueAsString" @bind:event="oninput" @ref="_inputElement" />

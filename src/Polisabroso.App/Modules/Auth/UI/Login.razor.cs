@@ -4,7 +4,7 @@ namespace Polisabroso.Modules.Auth.UI;
 
 public partial class Login : ComponentBase
 {
-
+    private string _password = string.Empty;
     private static void HandleSubmit()
     {
     }

@@ -1,0 +1,81 @@
+@using Microsoft.AspNetCore.Components.Forms
+@using Polisabroso.Shared.UI.Components
+
+<div class="signup-form-container">
+    <EditForm EditContext="_editContext" OnValidSubmit="HandleValidSubmit" OnInvalidSubmit="HandleInvalidSubmit"
+              FormName="signup" class="signup-form" novalidate>
+        <DataAnnotationsValidator/>
+
+        <div class="field">
+            <label for="signup-first-name">Nombre</label>
+            <InputText id="signup-first-name" name="firstName" autocomplete="given-name" placeholder="Tu nombre"
+                       required
+                       @bind-Value="_input.FirstName" aria-describedby="signup-first-name-error"
+                       aria-invalid="@InvalidState(nameof(SignupInput.FirstName))"/>
+            <div id="signup-first-name-error" aria-live="polite">
+                <ValidationMessage For="() => _input.FirstName"/>
+            </div>
+        </div>
+
+        <div class="field">
+            <label for="signup-last-name">Apellido</label>
+            <InputText id="signup-last-name" name="lastName" autocomplete="family-name" placeholder="Tu apellido"
+                       required
+                       @bind-Value="_input.LastName" aria-describedby="signup-last-name-error"
+                       aria-invalid="@InvalidState(nameof(SignupInput.LastName))"/>
+            <div id="signup-last-name-error" aria-live="polite">
+                <ValidationMessage For="() => _input.LastName"/>
+            </div>
+        </div>
+
+        <div class="field">
+            <label for="signup-username">Nombre de usuario</label>
+            <InputText id="signup-username" name="username" autocomplete="username" autocapitalize="none"
+                       spellcheck="false" placeholder="Tu nombre de usuario" required
+                       @bind-Value="_input.Username" aria-describedby="signup-username-error"
+                       aria-invalid="@InvalidState(nameof(SignupInput.Username))"/>
+            <div id="signup-username-error" aria-live="polite">
+                <ValidationMessage For="() => _input.Username"/>
+            </div>
+        </div>
+
+        <div class="field">
+            <label for="signup-email">Correo electrónico</label>
+            <InputText id="signup-email" name="email" type="email" autocomplete="email" placeholder="nombre@negocio.com"
+                       required
+                       @bind-Value="_input.Email" aria-describedby="signup-email-error"
+                       aria-invalid="@InvalidState(nameof(SignupInput.Email))"/>
+            <div id="signup-email-error" aria-live="polite">
+                <ValidationMessage For="() => _input.Email"/>
+            </div>
+        </div>
+
+        <div class="field">
+            <label for="signup-phone">Teléfono</label>
+            <MaskedInput id="signup-phone" name="phoneNumber" Mask="(000) 000-0000" inputmode="tel" autocomplete="tel"
+                       placeholder="(809) 888-8888" required
+                       @bind-Value="_input.PhoneNumber" aria-describedby="signup-phone-error"
+                       aria-invalid="@InvalidState(nameof(SignupInput.PhoneNumber))"/>
+            <div id="signup-phone-error" aria-live="polite">
+                <ValidationMessage For="() => _input.PhoneNumber"/>
+            </div>
+        </div>
+
+        <PasswordField Id="signup-password" Name="password" Label="Contraseña" Placeholder="Crea tu contraseña"
+                       Hint="@PasswordHint" @bind-Value="_input.Password"/>
+        <PasswordField Id="signup-confirm" Name="confirmPassword" Label="Confirmar contraseña"
+                       Placeholder="Repite tu contraseña"
+                       @bind-Value="_input.ConfirmPassword"/>
+
+        <button class="primary-action" type="submit"
+                disabled="@_isSubmitting">@(_isSubmitting ? "Creando cuenta…" : "Crear cuenta")</button>
+        <div class="@FeedbackClass" role="status" aria-atomic="true" tabindex="-1"
+             hidden="@string.IsNullOrEmpty(_feedback)" @ref="_feedbackElement">
+            @if (!string.IsNullOrEmpty(_feedback))
+            {
+                <strong class="signup-form__feedback-title">@FeedbackTitle</strong>
+                <p class="signup-form__feedback-message">@_feedback</p>
+            }
+        </div>
+    </EditForm>
+</div>

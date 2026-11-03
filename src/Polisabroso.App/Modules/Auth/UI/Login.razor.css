@@ -70,36 +70,6 @@
     margin-bottom: 2.375rem;
 }
 
-.brand-lockup {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6875rem;
-}
-
-.brand-lockup__mark {
-    width: 2.75rem;
-    height: 2.75rem;
-    flex: 0 0 auto;
-}
-
-.brand-lockup__name {
-    display: block;
-    color: var(--color-primary);
-    font-size: 1.1rem;
-    font-weight: 800;
-    letter-spacing: -0.03em;
-}
-
-.brand-lockup__label {
-    display: block;
-    margin-top: 0.0625rem;
-    color: var(--color-text-muted);
-    font-size: 0.62rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-}
-
 .eyebrow {
     margin: 0 0 0.625rem;
     color: var(--color-primary);
@@ -129,18 +99,19 @@
     gap: 1.125rem;
 }
 
-.field {
+.login-form ::deep .field {
     display: grid;
     gap: 0.5rem;
 }
 
-.field label {
+.login-form ::deep .field label {
     color: var(--color-text);
     font-size: 0.83rem;
     font-weight: 700;
 }
 
-.field input {
+.login-form ::deep .field input {
+    box-sizing: border-box;
     width: 100%;
     min-height: 3.125rem;
     border: 1px solid var(--color-border);
@@ -152,18 +123,22 @@
     transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
 }
 
-.field input::placeholder {
+.login-form ::deep .field input::placeholder {
     color: var(--login-placeholder);
 }
 
-.field input:hover {
+.login-form ::deep .field input:hover {
     border-color: color-mix(in srgb, var(--color-border) 72%, var(--color-text-muted));
 }
 
-.field input:focus {
+.login-form ::deep .field input:focus {
     border-color: var(--color-primary);
     outline: 0;
     box-shadow: 0 0 0 0.25rem var(--color-primary-soft);
+}
+
+.login-form ::deep .password-control input {
+    padding-right: 88px;
 }
 
 .login-meta {
@@ -230,7 +205,7 @@
     text-align: center;
 }
 
-.login-page :is(button, a, input):focus-visible {
+.login-page :is(button, a):focus-visible {
     outline: 3px solid var(--color-info);
     outline-offset: 3px;
 }
@@ -271,5 +246,9 @@
     .login-page *::after {
         scroll-behavior: auto !important;
         transition-duration: 0.01ms !important;
+    }
+
+    .login-form ::deep .field input {
+        transition: none;
     }
 }

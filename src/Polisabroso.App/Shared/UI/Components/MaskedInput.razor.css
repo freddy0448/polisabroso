@@ -1,0 +1,6 @@
+.masked-input {
+    box-sizing: border-box;
+    min-width: 0;
+    max-width: 100%;
+    font: inherit;
+}

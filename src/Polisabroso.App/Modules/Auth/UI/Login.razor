@@ -1,6 +1,7 @@
 @*Start point of the application*@
 @page "/login"
 @using Microsoft.AspNetCore.Components.Web
+@using Polisabroso.Shared.UI.Components
 @using Polisabroso.Shared.UI.Layout
 @layout LoginLayout
 
@@ -11,19 +12,7 @@
 
     <article class="login-card">
         <div class="login-card__brand">
-            <div class="brand-lockup" aria-label="Polisabroso">
-                <svg class="brand-lockup__mark" viewBox="0 0 48 48" role="img" aria-labelledby="login-logo-title">
-                    <title id="login-logo-title">Cuenco con vapor</title>
-                    <circle cx="24" cy="24" r="23" fill="var(--color-primary-soft)" />
-                    <path d="M12 25h24c-.9 7-5.5 11-12 11s-11.1-4-12-11Z" fill="var(--color-primary)" />
-                    <path d="M17 20c0-3 3-3 3-6M24 20c0-3 3-3 3-6M31 20c0-3 3-3 3-6" fill="none" stroke="var(--color-primary-hover)" stroke-width="2.2" stroke-linecap="round" />
-                    <path d="M18 39h12" stroke="var(--color-primary)" stroke-width="2.2" stroke-linecap="round" />
-                </svg>
-                <span>
-                    <span class="brand-lockup__name">Polisabroso</span>
-                    <span class="brand-lockup__label">Gestión de comedor</span>
-                </span>
-            </div>
+            <BrandLockup />
         </div>
 
         <p class="eyebrow">Bienvenido de vuelta</p>
@@ -41,15 +30,9 @@
                        required />
             </div>
 
-            <div class="field">
-                <label for="login-password">Contraseña</label>
-                <input id="login-password"
-                       name="password"
-                       type="password"
-                       autocomplete="current-password"
-                       placeholder="Ingresa tu contraseña"
-                       required />
-            </div>
+            <PasswordField Id="login-password" Name="password" Label="Contraseña"
+                           Autocomplete="current-password" Placeholder="Ingresa tu contraseña"
+                           @bind-Value="_password" />
 
             <div class="login-meta">
                 <label class="check" for="login-remember">

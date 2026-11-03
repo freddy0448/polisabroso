@@ -6,6 +6,12 @@
 
 Keep module internals private. Cross-module behavior should be exposed through a small public contract; shared read models may be used for queries but must not become writable back doors into another module.
 
+## Component Data Access
+
+All database or external data-source queries and writes must run in services under the owning module's `Internal/` folder, exposed through contracts in `Api/`. Blazor components, including pages, layouts, code-behind files, and component JavaScript, must call those contracts and consume materialized results.
+
+Components must not inject or directly use query-capable infrastructure such as `DbContext`, `DbSet`, repositories, database connections, `UserManager`, or `SignInManager`, or execute deferred `IQueryable` queries. This applies even when a method hides the query internally, such as user/email availability checks or password sign-in checks. Keep form state, local input validation, and result presentation in components; put validation requiring stored data in an internal validation service. When creating or modifying components, move any direct data access into the owning module's service before completing the change.
+
 ## Build, Test, and Development Commands
 
 Run commands from the repository root unless noted:
@@ -19,7 +25,16 @@ Run commands from the repository root unless noted:
 
 ## Coding Style & Naming Conventions
 
-Use four-space indentation, file-scoped namespaces, nullable reference types, and the existing C# brace style. Name types, components, and public members in `PascalCase`; use `camelCase` for locals and parameters. Keep Razor markup in `.razor` and substantial component logic in a matching `.razor.cs`. Code and identifiers are English; user-facing text is Spanish. Run `dotnet format Polisabroso.sln` before submitting broad C# changes.
+Use four-space indentation, file-scoped namespaces, nullable reference types, and the existing C# brace style. Name types, components, and public members in `PascalCase`; use `camelCase` for locals and parameters. Code and identifiers are English; user-facing text is Spanish. Run `dotnet format Polisabroso.sln` before submitting broad C# changes.
+
+Every Blazor component must be split into colocated files with the same base name:
+
+- `Component.razor` for Razor markup.
+- `Component.razor.cs` for the partial component class and all C# component logic.
+- `Component.razor.css` for isolated component styles.
+- `Component.razor.js` for component JavaScript.
+
+Keep component logic, styles, and scripts in their respective files rather than inline `@code`, `<style>`, or `<script>` blocks in the `.razor` file. Apply this structure when creating or modifying any Blazor component, including pages and layouts.
 
 ## Testing Guidelines
 
