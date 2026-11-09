@@ -12,34 +12,43 @@
 
     <article class="login-card">
         <div class="login-card__brand">
-            <BrandLockup />
+            <BrandLockup/>
         </div>
 
         <p class="eyebrow">Bienvenido de vuelta</p>
-        <h1 id="login-title">Tu buffet,<br />en orden.</h1>
-        <p class="login-card__intro">Ingresa para organizar pedidos y mantener cada combinación clara desde la cocina hasta la entrega.</p>
+        <h1 id="login-title">Tu buffet,<br/>en orden.</h1>
+        <p class="login-card__intro">Ingresa para organizar pedidos y mantener cada combinación clara desde la cocina
+            hasta la entrega.</p>
 
-        <form class="login-form" @onsubmit="HandleSubmit" @onsubmit:preventDefault="true">
+        <form class="login-form" method="post" action="auth/sign-in" data-enhance="false">
+            <Microsoft.AspNetCore.Components.Forms.AntiforgeryToken/>
+            @if (ErrorMessage is not null)
+            {
+                <p class="login-form__error" role="alert">@ErrorMessage</p>
+            }
             <div class="field">
-                <label for="login-email">Correo electrónico</label>
-                <input id="login-email"
-                       name="email"
-                       type="email"
+                <label for="login-username">Nombre de usuario</label>
+                <input id="login-username"
+                       name="username"
+                       type="text"
                        autocomplete="username"
-                       placeholder="nombre@negocio.com"
-                       required />
+                       autocapitalize="none"
+                       spellcheck="false"
+                       placeholder="Ingresa tu nombre de usuario"
+                       required/>
             </div>
 
             <PasswordField Id="login-password" Name="password" Label="Contraseña"
                            Autocomplete="current-password" Placeholder="Ingresa tu contraseña"
-                           @bind-Value="_password" />
+                           @bind-Value="_password"/>
 
             <div class="login-meta">
                 <label class="check" for="login-remember">
-                    <input id="login-remember" name="remember" type="checkbox" />
+                    <input id="login-remember" name="remember" type="checkbox" value="true"/>
                     <span>Mantener sesión iniciada</span>
                 </label>
-                <a class="login-link" href="#" @onclick="HandleRecoveryPlaceholder" @onclick:preventDefault="true">¿Olvidaste tu contraseña?</a>
+                <a class="login-link" href="#" @onclick="HandleRecoveryPlaceholder" @onclick:preventDefault="true">¿Olvidaste
+                    tu contraseña?</a>
             </div>
 
             <button class="primary-action" type="submit">Iniciar sesión</button>

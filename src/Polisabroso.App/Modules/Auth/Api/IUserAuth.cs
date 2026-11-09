@@ -10,7 +10,7 @@ public interface IUserAuth
     Task<Result<Guid>> CreateUser(CreateUserRequest request);
 
     /// <summary>
-    /// Validates credentials and returns session data without issuing an authentication cookie.
+    /// Validates a username and password and returns session data without issuing an authentication cookie.
     /// </summary>
     Task<Result<AuthSession>> SignIn(string username, string password);
 }

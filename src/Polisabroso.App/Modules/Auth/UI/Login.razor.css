@@ -10,10 +10,9 @@
     place-items: center;
     overflow: hidden;
     padding: clamp(2.125rem, 6vw, 3.5rem) 1.25rem;
-    background:
-        radial-gradient(circle at 18% 14%, color-mix(in srgb, var(--color-surface) 88%, transparent) 0 9%, transparent 34%),
-        radial-gradient(circle at 82% 82%, color-mix(in srgb, var(--color-primary-soft) 74%, transparent) 0 12%, transparent 38%),
-        linear-gradient(138deg, var(--color-primary-soft) 0%, var(--color-background) 42%, var(--color-primary-soft) 100%);
+    background: radial-gradient(circle at 18% 14%, color-mix(in srgb, var(--color-surface) 88%, transparent) 0 9%, transparent 34%),
+    radial-gradient(circle at 82% 82%, color-mix(in srgb, var(--color-primary-soft) 74%, transparent) 0 12%, transparent 38%),
+    linear-gradient(138deg, var(--color-primary-soft) 0%, var(--color-background) 42%, var(--color-primary-soft) 100%);
 }
 
 .login-page::before,
@@ -31,8 +30,8 @@
     top: -18vw;
     left: -14vw;
     background: linear-gradient(145deg,
-        color-mix(in srgb, var(--color-primary) 78%, transparent),
-        color-mix(in srgb, var(--color-primary-hover) 5%, transparent));
+    color-mix(in srgb, var(--color-primary) 78%, transparent),
+    color-mix(in srgb, var(--color-primary-hover) 5%, transparent));
 }
 
 .login-page::after {
@@ -41,8 +40,8 @@
     width: min(34vw, 28.125rem);
     aspect-ratio: 1;
     background: linear-gradient(145deg,
-        color-mix(in srgb, var(--color-primary-hover) 10%, transparent),
-        color-mix(in srgb, var(--color-primary) 44%, transparent));
+    color-mix(in srgb, var(--color-primary-hover) 10%, transparent),
+    color-mix(in srgb, var(--color-primary) 44%, transparent));
 }
 
 .login-page__grain {
@@ -97,6 +96,16 @@
 .login-form {
     display: grid;
     gap: 1.125rem;
+}
+
+.login-form__error {
+    margin: 0;
+    padding: 0.875rem;
+    border-radius: 0.75rem;
+    color: var(--color-error);
+    background: var(--color-error-soft);
+    font-size: 0.875rem;
+    line-height: 1.5;
 }
 
 .login-form ::deep .field {

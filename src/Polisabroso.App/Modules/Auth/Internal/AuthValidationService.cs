@@ -15,7 +15,8 @@ internal sealed class AuthValidationService(SignInManager<AppUser> signInManager
         ArgumentNullException.ThrowIfNull(request);
 
         var validationResults = new List<ValidationResult>();
-        if (!Validator.TryValidateObject(request, new ValidationContext(request), validationResults, validateAllProperties: true))
+        if (!Validator.TryValidateObject(request, new ValidationContext(request), validationResults,
+                validateAllProperties: true))
         {
             return Result.Fail<Guid>(validationResults.Select(result =>
                 new Error(result.ErrorMessage!).WithMetadata("Fields", result.MemberNames.ToArray())));
@@ -41,12 +42,14 @@ internal sealed class AuthValidationService(SignInManager<AppUser> signInManager
                 "DuplicateEmail" => "Este correo electrónico ya está registrado.",
                 "InvalidUserName" => "El nombre de usuario contiene caracteres no permitidos.",
                 "InvalidEmail" => "Ingresa un correo electrónico válido.",
-                "PasswordTooShort" => $"La contraseña debe tener al menos {_signInManager.UserManager.Options.Password.RequiredLength} caracteres.",
+                "PasswordTooShort" =>
+                    $"La contraseña debe tener al menos {_signInManager.UserManager.Options.Password.RequiredLength} caracteres.",
                 "PasswordRequiresDigit" => "La contraseña debe contener un número (0-9).",
                 "PasswordRequiresLower" => "La contraseña debe contener una letra minúscula (a-z).",
                 "PasswordRequiresUpper" => "La contraseña debe contener una letra mayúscula (A-Z).",
                 "PasswordRequiresNonAlphanumeric" => "La contraseña debe contener un símbolo.",
-                "PasswordRequiresUniqueChars" => $"La contraseña debe contener al menos {_signInManager.UserManager.Options.Password.RequiredUniqueChars} caracteres distintos.",
+                "PasswordRequiresUniqueChars" =>
+                    $"La contraseña debe contener al menos {_signInManager.UserManager.Options.Password.RequiredUniqueChars} caracteres distintos.",
                 _ => "No se pudo crear la cuenta. Inténtalo de nuevo."
             }).WithMetadata("Code", error.Code)));
     }

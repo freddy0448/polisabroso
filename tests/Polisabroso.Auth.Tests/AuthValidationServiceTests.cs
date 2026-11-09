@@ -34,10 +34,10 @@ public class AuthValidationServiceTests
 
         var factory = new UserClaimsPrincipalFactory<AppUser, AppRole>(_users.Object, _roles.Object, options);
         _signIn = new Mock<SignInManager<AppUser>>(
-            _users.Object, new HttpContextAccessor(), factory, options,
-            Mock.Of<ILogger<SignInManager<AppUser>>>(), Mock.Of<IAuthenticationSchemeProvider>(),
-            Mock.Of<IUserConfirmation<AppUser>>())
-        { CallBase = true };
+                _users.Object, new HttpContextAccessor(), factory, options,
+                Mock.Of<ILogger<SignInManager<AppUser>>>(), Mock.Of<IAuthenticationSchemeProvider>(),
+                Mock.Of<IUserConfirmation<AppUser>>())
+            { CallBase = true };
 
         _users.Setup(manager => manager.FindByNameAsync("chef")).ReturnsAsync(_user);
         _signIn.Setup(manager => manager.CheckPasswordSignInAsync(_user, It.IsAny<string>(), true))
@@ -49,7 +49,8 @@ public class AuthValidationServiceTests
     [Fact]
     public async Task CreateUser_ValidRequest_PersistsProfileAndReturnsIdWithoutSigningIn()
     {
-        var request = new CreateUserRequest(" Ana ", " Pérez ", "ana", "ana@example.com", "+591 71234567", " Password1! ");
+        var request =
+            new CreateUserRequest(" Ana ", " Pérez ", "ana", "ana@example.com", "+591 71234567", " Password1! ");
         _signIn.Invocations.Clear();
         AppUser? createdUser = null;
         _users.Setup(manager => manager.CreateAsync(It.IsAny<AppUser>(), request.Password))
@@ -82,7 +83,9 @@ public class AuthValidationServiceTests
         _users.Setup(manager => manager.CreateAsync(It.IsAny<AppUser>(), It.IsAny<string>()))
             .ReturnsAsync(IdentityResult.Failed(new IdentityError { Code = code, Description = "Identity rejection" }));
 
-        var result = await _session.CreateUser(new CreateUserRequest("Ana", "Pérez", "ana", "ana@example.com", "71234567", "Password1!"));
+        var result =
+            await _session.CreateUser(new CreateUserRequest("Ana", "Pérez", "ana", "ana@example.com", "71234567",
+                "Password1!"));
 
         Assert.True(result.IsFailed);
         Assert.Equal(message, result.Errors.Single().Message);
@@ -94,9 +97,11 @@ public class AuthValidationServiceTests
     [InlineData("Ana", "invalid", "71234567", "Password1!")]
     [InlineData("Ana", "ana@example.com", "invalid", "Password1!")]
     [InlineData("Ana", "ana@example.com", "71234567", "")]
-    public async Task CreateUser_InvalidProfile_DoesNotCallIdentity(string firstName, string email, string phone, string password)
+    public async Task CreateUser_InvalidProfile_DoesNotCallIdentity(string firstName, string email, string phone,
+        string password)
     {
-        var result = await _session.CreateUser(new CreateUserRequest(firstName, "Pérez", "ana", email, phone, password));
+        var result =
+            await _session.CreateUser(new CreateUserRequest(firstName, "Pérez", "ana", email, phone, password));
 
         Assert.True(result.IsFailed);
         _users.Verify(manager => manager.CreateAsync(It.IsAny<AppUser>(), It.IsAny<string>()), Times.Never);
@@ -190,6 +195,23 @@ public class AuthValidationServiceTests
         _signIn.Verify(manager => manager.CreateUserPrincipalAsync(It.IsAny<AppUser>()), Times.Never);
     }
 
+    [Theory]
+    [InlineData(true)]
+    [InlineData(false)]
+    public async Task Login_EmailForExistingAccount_DoesNotAuthenticateByEmail(bool requireUniqueEmail)
+    {
+        _users.Object.Options.User.RequireUniqueEmail = requireUniqueEmail;
+        _users.Setup(manager => manager.FindByEmailAsync("chef@example.com")).ReturnsAsync(_user);
+
+        var result = await _session.SignIn("chef@example.com", "password");
+
+        Assert.True(result.IsFailed);
+        _users.Verify(manager => manager.FindByNameAsync("chef@example.com"), Times.Once);
+        _users.Verify(manager => manager.FindByEmailAsync(It.IsAny<string>()), Times.Never);
+        _signIn.Verify(manager => manager.CheckPasswordSignInAsync(
+            It.IsAny<AppUser>(), It.IsAny<string>(), It.IsAny<bool>()), Times.Never);
+    }
+
     [Fact]
     public async Task Login_ValidCredentials_ReturnsAllRolesAndUserAndRoleClaims()
     {
@@ -216,7 +238,8 @@ public class AuthValidationServiceTests
         Assert.Equal(_user.Id, result.Value.UserId);
         Assert.Equal("chef", result.Value.UserName);
         Assert.Equal(new[] { "Chef", "Manager" }, result.Value.Roles);
-        Assert.Contains(result.Value.Claims, claim => claim.Type == ClaimTypes.NameIdentifier && claim.Value == _user.Id.ToString());
+        Assert.Contains(result.Value.Claims,
+            claim => claim.Type == ClaimTypes.NameIdentifier && claim.Value == _user.Id.ToString());
         Assert.Contains(result.Value.Claims, claim => claim.Type == "location" && claim.Value == "La Paz");
         Assert.Contains(result.Value.Claims, claim => claim.Type == "permission" && claim.Value == "orders.read");
         Assert.Contains(result.Value.Claims, claim => claim.Type == "permission" && claim.Value == "Chef.access");

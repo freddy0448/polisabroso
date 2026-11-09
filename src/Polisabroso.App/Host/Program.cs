@@ -24,7 +24,7 @@ builder.Services.AddCascadingAuthenticationState();
 
 builder.Services.AddAuthentication(options =>
     {
-        options.DefaultScheme = IdentityConstants.ApplicationScheme;
+        options.DefaultScheme = AuthConstants.ApplicationScheme;
         options.DefaultSignInScheme = IdentityConstants.ExternalScheme;
     })
     .AddIdentityCookies();
@@ -71,7 +71,8 @@ await using (var scope = app.Services.CreateAsyncScope())
     }
     catch (Exception exception)
     {
-        app.Logger.LogCritical(exception, "No se pudieron aplicar las migraciones. Se detiene el inicio de la aplicación.");
+        app.Logger.LogCritical(exception,
+            "No se pudieron aplicar las migraciones. Se detiene el inicio de la aplicación.");
         throw;
     }
 }
@@ -87,8 +88,11 @@ if (!app.Environment.IsDevelopment())
 app.UseStatusCodePagesWithReExecute("/not-found", createScopeForStatusCodePages: true);
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
+app.UseAuthorization();
 app.UseAntiforgery();
 
+app.MapAuthEndpoints();
 app.MapStaticAssets();
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();

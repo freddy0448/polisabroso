@@ -1,0 +1,44 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "^apply_patch$",
+        "hooks": [
+          {
+            "type": "mcp_tool",
+            "server": "jetbrains_rider",
+            "tool": "post_edit_quality_check",
+            "input": {
+              "input": "${tool_input.command}",
+              "rootFolder": "C:/Users/fredd/source/repos/Polisabroso",
+              "reformat": true,
+              "run_inspections": false
+            },
+            "timeout": 60,
+            "statusMessage": "Formatting changed files with Rider"
+          }
+        ]
+      },
+      {
+        "matcher": "^mcp__jetbrains_rider__apply_patch$",
+        "hooks": [
+          {
+            "type": "mcp_tool",
+            "server": "jetbrains_rider",
+            "tool": "post_edit_quality_check",
+            "input": {
+              "hook_event": {
+                "tool_input": "${tool_input}"
+              },
+              "rootFolder": "C:/Users/fredd/source/repos/Polisabroso",
+              "reformat": true,
+              "run_inspections": false
+            },
+            "timeout": 60,
+            "statusMessage": "Formatting changed files with Rider"
+          }
+        ]
+      }
+    ]
+  }
+}
