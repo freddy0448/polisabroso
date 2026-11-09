@@ -49,7 +49,8 @@ sequenceDiagram
 5. `AuthValidationService` looks up the username with `FindByNameAsync`. There is no email lookup fallback. An
    email-shaped value only works if it is itself the account's username.
 6. The service checks the password with `lockoutOnFailure: true`. Identity applies account eligibility and lockout
-   checks; the host requires confirmed accounts. The service also rejects accounts requiring two-factor authentication
+   checks; the host requires confirmed accounts outside the `Development` environment. The service also rejects accounts
+   requiring two-factor authentication
    because this flow does not complete a second factor.
 7. Success returns an `AuthSession` with the user ID, username, roles, and claims, including claims inherited from
    roles. This result alone does not issue a cookie.
@@ -60,6 +61,29 @@ sequenceDiagram
 
 Database access stays in the Auth module's internal service. The component handles input and presentation; it does not
 query Identity stores.
+
+## Account confirmation configuration
+
+`Program.cs` configures account confirmation when registering Identity:
+
+```csharp
+options.SignIn.RequireConfirmedAccount = !builder.Environment.IsDevelopment();
+```
+
+| Runtime environment                                      | `RequireConfirmedAccount` | Login behavior                                                          |
+|----------------------------------------------------------|---------------------------|-------------------------------------------------------------------------|
+| `Development`                                            | `false`                   | An unconfirmed account can pass credential validation.                  |
+| Other environments, including `Staging` and `Production` | `true`                    | The account must be confirmed before credential validation can succeed. |
+
+This uses the ASP.NET Core runtime environment, not the Debug/Release build configuration. A Release build running
+in `Development` disables the requirement; a Debug build running in `Production` requires confirmation.
+
+With Identity's default account-confirmation implementation, account confirmation checks `EmailConfirmed`, even
+though the login identifier is the username. When confirmation is required and missing, Identity returns
+`IsNotAllowed = true`; this flow redirects to `/login?error=credentials` with generic feedback.
+
+Disabling confirmation only skips the account-confirmation requirement. Password validation, lockout checks, and
+the service's rejection of accounts requiring a second factor still apply.
 
 ## The form and its endpoint
 

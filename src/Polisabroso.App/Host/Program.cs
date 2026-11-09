@@ -30,7 +30,7 @@ builder.Services.AddAuthentication(options =>
     .AddIdentityCookies();
 builder.Services.AddIdentityCore<AppUser>(options =>
     {
-        options.SignIn.RequireConfirmedAccount = true;
+        options.SignIn.RequireConfirmedAccount = !builder.Environment.IsDevelopment();
 
         options.Stores.SchemaVersion = IdentitySchemaVersions.Version3;
 
