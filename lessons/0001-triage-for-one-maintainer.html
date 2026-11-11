@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Triage for one maintainer | Polisabroso</title>
+    <link rel="stylesheet" href="../assets/teaching.css">
+</head>
+<body>
+<main>
+    <p class="eyebrow">Polisabroso · Lesson 01 · 3 minutes</p>
+    <h1>Decide what happens next.</h1>
+    <p>You manage Polisabroso yourself. For this lesson, your goal is to decide whether an issue needs more information
+        or is ready to hand to an agent.</p>
+    <h2>Setup records the conventions</h2>
+    <p>The setup skill records where issues live, which labels to use, and where domain documents belong. Your
+        repository now points to GitHub Issues and uses five triage states. See the <a
+                href="../docs/agents/issue-tracker.md">tracker configuration</a> and <a
+                href="../docs/agents/triage-labels.md">label mapping</a>.</p>
+    <h2>Triage evaluates one piece of work</h2>
+    <p>Triage means reviewing an issue and deciding its next step. Even when you wrote the issue yourself, it can still
+        need details before you or an agent can act on it.</p>
+    <p>The installed triage skill uses one category, such as <code>bug</code> or <code>enhancement</code>, and one
+        state. <code>bug</code> describes the kind of work; <code>needs-info</code> describes what must happen next.
+        These rules come from the <a href="file:///C:/Users/fredd/.agents/skills/triage/SKILL.md">triage skill's Roles
+            section</a>.</p>
+    <div class="example">
+        <h3>A hypothetical login issue</h3>
+        <p>“Login doesn't work” leaves the reproduction steps and observed behavior unclear. A reasonable recommendation
+            is <code>bug</code> plus <code>needs-info</code>.</p>
+        <p>After you supply the missing details, the skill returns the issue to <code>needs-triage</code> for
+            evaluation. Once the problem is verified and fully specified, it may become <code>ready-for-agent</code>
+            with an implementation brief.</p>
+    </div>
+    <p><code>ready-for-agent</code> means the issue is prepared for implementation. It does not mean implementation has
+        started or finished. The skill's <a href="file:///C:/Users/fredd/.agents/skills/triage/SKILL.md">Apply the
+            outcome section</a> calls for an agent brief at that point.</p>
+    <fieldset>
+        <legend>Try it before reading the feedback</legend>
+        <p>You write “Improve registration.” The issue gives no description of the desired behavior. Which state best
+            fits this missing information? Choose an answer, then open it.</p>
+        <details>
+            <summary>A. Use ready-for-agent</summary>
+            <p>Not yet. An agent would have to invent the desired improvement. Specify the expected behavior first.</p>
+        </details>
+        <details>
+            <summary>B. Use needs-info</summary>
+            <p>Correct. The missing information is the desired behavior. As the solo maintainer, you can supply it
+                yourself.</p></details>
+        <details>
+            <summary>C. Use ready-for-human</summary>
+            <p>This state is for work requiring human implementation. It does not resolve an unclear request.</p>
+        </details>
+    </fieldset>
+    <h2>Apply it to your next issue</h2>
+    <p>Write what happens now, what should happen, and how you will check the result. Then ask <code>$triage Review
+        issue #&lt;number&gt;</code>. This is a suggested prompt, not an action taken by this lesson.</p>
+    <p>Tomorrow, recall from memory: what does setup configure, and what decision does triage make?</p>
+    <p class="source">Primary reading: the installed <a href="file:///C:/Users/fredd/.agents/skills/triage/SKILL.md">triage
+        skill</a>, especially Roles and Triage a specific issue or PR.</p>
+    <nav><a href="../reference/engineering-skills.html">Open the quick reference</a> · <a href="../MISSION.md">Learning
+        goal</a></nav>
+    <p>Ask your agent any follow-up questions, or bring one of your own issue descriptions to practice together.</p>
+</main>
+</body>
+</html>

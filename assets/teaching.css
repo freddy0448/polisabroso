@@ -1,0 +1,151 @@
+:root {
+    color-scheme: light;
+    --ink: #202b32;
+    --muted: #51616c;
+    --accent: #245e57;
+    --paper: #faf8f2;
+    --line: #d9dfdc;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 18px/1.65 Georgia, serif;
+}
+
+main {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 56px 24px 72px;
+}
+
+h1, h2, h3, nav, .eyebrow, summary {
+    font-family: system-ui, sans-serif;
+}
+
+h1 {
+    font-size: clamp(2rem, 6vw, 3rem);
+    line-height: 1.15;
+    letter-spacing: -.035em;
+    margin: 12px 0 24px;
+}
+
+h2 {
+    font-size: 1.3rem;
+    margin-top: 36px;
+}
+
+h3 {
+    font-size: 1rem;
+}
+
+.eyebrow {
+    color: var(--accent);
+    font-size: .8rem;
+    text-transform: uppercase;
+    letter-spacing: .13em;
+}
+
+a {
+    color: var(--accent);
+    text-underline-offset: 3px;
+}
+
+p {
+    margin: 0 0 18px;
+}
+
+code {
+    font: .85em ui-monospace, Consolas, monospace;
+    overflow-wrap: anywhere;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: .92rem;
+}
+
+th, td {
+    padding: 12px 8px;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid var(--line);
+}
+
+th {
+    font-family: system-ui, sans-serif;
+}
+
+.example {
+    border-left: 3px solid var(--accent);
+    padding: 8px 20px;
+    margin: 24px 0;
+}
+
+fieldset {
+    border: 1px solid var(--line);
+    padding: 20px;
+    margin: 24px 0;
+}
+
+legend {
+    padding: 0 8px;
+    font-family: system-ui, sans-serif;
+    font-size: .95rem;
+}
+
+details {
+    border-top: 1px solid var(--line);
+    padding: 12px 0;
+}
+
+summary {
+    cursor: pointer;
+    color: var(--accent);
+    font-size: .95rem;
+}
+
+details p {
+    margin: 14px 0 0;
+}
+
+nav {
+    margin-top: 32px;
+    font-size: .9rem;
+}
+
+.source {
+    color: var(--muted);
+    font-size: .88rem;
+}
+
+@media print {
+    body {
+        background: white;
+        font-size: 11pt;
+    }
+
+    main {
+        max-width: none;
+        padding: 0;
+    }
+
+    h2, h3 {
+        break-after: avoid;
+    }
+
+    table, fieldset, .example {
+        break-inside: avoid;
+    }
+
+    details::after {
+        content: 'Open this lesson in a browser to reveal exercise feedback.';
+        font-size: 9pt;
+    }
+}
