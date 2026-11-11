@@ -43,3 +43,20 @@ No automated test project or coverage threshold is configured yet. New business 
 ## Commit & Pull Request Guidelines
 
 Recent history favors concise Conventional Commit subjects such as `feat: add ...`, `refactor: remove ...`, and `docs: update ...`. Keep commits focused and use an imperative summary. Pull requests should explain the behavior and architecture impact, link relevant issues, list verification commands, and include screenshots for visible UI changes. Never commit secrets; keep local overrides in development configuration or environment variables.
+
+## Agent skills
+
+### Issue tracker
+
+Issues and specs live in GitHub Issues for `freddy0448/polisabroso`.
+Before tracker operations, read `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Use the five default triage labels.
+Before triaging issues, read `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Use a single-context layout: root `GLOSSARY.md` and `docs/adr/`.
+Before exploring the codebase, read `docs/agents/domain.md`.
